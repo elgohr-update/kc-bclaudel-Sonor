@@ -17,8 +17,8 @@
       "wfsCount": 3,
       "tbrCount": 3,
       "finCount": 3,
-      "qnaCount": 3,
-      "qnaFinCount": 3,
+
+      "cloCount": 3,
       "npaCount": 2,
         "npiCount": 3,
         "rowCount": 4,
@@ -42,8 +42,8 @@
       "wfsCount": 0,
       "tbrCount": 2,
       "finCount": 1,
-      "qnaCount": 3,
-      "qnaFinCount": 3,
+
+      "cloCount": 3,
       "npaCount": 2,
         "npiCount": 3,
         "rowCount": 4,
@@ -67,8 +67,8 @@
       "wfsCount": 0,
       "tbrCount": 1,
       "finCount": 1,
-      "qnaCount": 3,
-      "qnaFinCount": 3,
+
+      "cloCount": 3,
       "npaCount": 2,
         "npiCount": 3,
         "rowCount": 4,
@@ -90,8 +90,8 @@
     "wfsCount": 0,
     "tbrCount": 2,
     "finCount": 1,
-    "qnaCount": 3,
-    "qnaFinCount": 3,
+    
+    "cloCount": 3,
     "npaCount": 2,
         "npiCount": 3,
         "rowCount": 4,

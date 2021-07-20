@@ -33,11 +33,19 @@ class Utils {
   static calculateWasteRate(outcomes, stateCount) {
     return (outcomes.refCount
         + outcomes.impCount
-        + outcomes.utrCount
-        + outcomes.acpCount
-        + outcomes.nerCount
         + stateCount.npiCount
     ) / (stateCount.total - stateCount.npaCount);
+  }
+
+  static calculateOutofScopeRate(outcomes, stateCount) {
+    return (outcomes.ucdCount
+      + outcomes.alaCount
+      + outcomes.dcdCount
+      + outcomes.nuhCount
+      + outcomes.utrCount
+      + outcomes.acpCount
+      + outcomes.nerCount)
+      / (stateCount.total - stateCount.npaCount);
   }
 
   static formatForMonitoringTable(stateCount) {
@@ -48,7 +56,7 @@ class Utils {
     line.onGoing = this.calculateOngoing(stateCount);
     line.waitingForIntValidation = stateCount.wftCount;
     line.intValidated = stateCount.tbrCount + stateCount.wfsCount;
-    line.demValidated = stateCount.finCount + stateCount.qnaFinCount;
+    line.demValidated = stateCount.finCount + stateCount.cloCount;
     line.preparingContact = stateCount.prcCount;
     line.atLeastOneContact = stateCount.aocCount;
     line.appointmentTaken = stateCount.apsCount;
@@ -66,7 +74,7 @@ class Utils {
 
     line.collectionRate = this.calculateCollectionRate(outcomes, stateCount);
     line.wasteRate = this.calculateWasteRate(outcomes, stateCount);
-    line.outOfScopeRate = (outcomes.ucdCount + outcomes.alaCount + outcomes.dcdCount + outcomes.nuhCount) / (stateCount.total - stateCount.npaCount);
+    line.outOfScopeRate = this.calculateOutOfScopeRate(outcomes, stateCount);
     line.surveysAccepted = outcomes.inaCount;
     line.refusal = outcomes.refCount;
     line.unreachable = outcomes.impCount;
