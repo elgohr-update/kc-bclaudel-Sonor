@@ -33,13 +33,19 @@ class Utils {
   static calculateWasteRate(outcomes, stateCount) {
     return (outcomes.refCount
         + outcomes.impCount
-        + outcomes.iniCount
-        + outcomes.alaCount
-        + outcomes.wamCount
-        + stateCount.npaCount
         + stateCount.npiCount
-        + stateCount.rowCount
-    ) / stateCount.total;
+    ) / (stateCount.total - stateCount.npaCount);
+  }
+
+  static calculateOutofScopeRate(outcomes, stateCount) {
+    return (outcomes.ucdCount
+      + outcomes.alaCount
+      + outcomes.dcdCount
+      + outcomes.nuhCount
+      + outcomes.utrCount
+      + outcomes.acpCount
+      + outcomes.nerCount)
+      / (stateCount.total - stateCount.npaCount);
   }
 
   static formatForMonitoringTable(stateCount) {
@@ -50,7 +56,7 @@ class Utils {
     line.onGoing = this.calculateOngoing(stateCount);
     line.waitingForIntValidation = stateCount.wftCount;
     line.intValidated = stateCount.tbrCount + stateCount.wfsCount;
-    line.demValidated = stateCount.finCount + stateCount.qnaFinCount;
+    line.demValidated = stateCount.finCount + stateCount.cloCount;
     line.preparingContact = stateCount.prcCount;
     line.atLeastOneContact = stateCount.aocCount;
     line.appointmentTaken = stateCount.apsCount;
@@ -68,12 +74,12 @@ class Utils {
 
     line.collectionRate = this.calculateCollectionRate(outcomes, stateCount);
     line.wasteRate = this.calculateWasteRate(outcomes, stateCount);
-    line.outOfScopeRate = outcomes.oosCount / stateCount.total;
+    line.outOfScopeRate = this.calculateOutOfScopeRate(outcomes, stateCount);
     line.surveysAccepted = outcomes.inaCount;
     line.refusal = outcomes.refCount;
     line.unreachable = outcomes.impCount;
-    line.otherWastes = outcomes.iniCount + outcomes.alaCount + outcomes.wamCount;
-    line.outOfScope = outcomes.oosCount;
+    line.otherWastes = outcomes.utrCount + outcomes.acpCount + outcomes.nerCount;
+    line.outOfScope = outcomes.ucdCount + outcomes.alaCount + outcomes.nuhCount;
     line.totalProcessed = stateCount.tbrCount + stateCount.finCount;
     line.absInterviewer = stateCount.npaCount;
     line.otherReason = stateCount.npiCount + stateCount.rowCount;
