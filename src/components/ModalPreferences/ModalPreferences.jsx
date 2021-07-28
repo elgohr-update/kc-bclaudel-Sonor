@@ -111,7 +111,12 @@ class ModalPreferences extends React.Component {
           </Button>
           <Button
             data-testid="validate-pref-modif"
-            onClick={() => {return (prefsChanged) ? (this.validateNewPreferences(), hidePreferences()) : hidePreferences();}}
+            onClick={() => {
+              if (prefsChanged) {
+                this.validateNewPreferences();
+              }
+              hidePreferences();
+            }}
           >
             {D.preferencesValidate}
           </Button>
