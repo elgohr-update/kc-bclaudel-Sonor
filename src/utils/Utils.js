@@ -37,7 +37,7 @@ class Utils {
     ) / (stateCount.total - stateCount.npaCount);
   }
 
-  static calculateOutofScopeRate(outcomes, stateCount) {
+  static calculateOutOfScopeRate(outcomes, stateCount) {
     return (outcomes.ucdCount
       + outcomes.alaCount
       + outcomes.dcdCount
